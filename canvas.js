@@ -4,7 +4,8 @@ var clear = document.getElementById("clear");
 var toggle = document.getElementById("toggle");
 var t = 0;
 
-var draw = function(e){
+//Work 00
+var drawShapes = function(e){
     var offset = canvas.getBoundingClientRect();
     var x = e.clientX - offset.x;
     var y = e.clientY - offset.y;
@@ -32,7 +33,32 @@ var update = function(e){
     t = t % 2;
 }
 
-canvas.addEventListener('click',draw);
-clear.addEventListener('click',clearing);
-toggle.addEventListener('click',update);
+//canvas.addEventListener('click',drawShapes);
+//clear.addEventListener('click',clearing);
+//toggle.addEventListener('click',update);
 
+
+//Work 01
+var drawPath = function(e){
+    var offset = canvas.getBoundingClientRect();
+    var x = e.clientX - offset.x;
+    var y = e.clientY - offset.y;
+
+    ctx.closePath();
+    ctx.lineTo(x,y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(x,y,10,0,2 * Math.PI);
+    ctx.stroke();
+    ctx.fillStyle = "red";
+    ctx.fill();
+    
+}
+
+var clearPath = function(e){
+    ctx.clearRect(0, 0, 500, 500);
+    ctx.beginPath();
+}
+
+canvas.addEventListener('click',drawPath);
+clear.addEventListener('click',clearPath);
